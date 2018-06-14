@@ -98,9 +98,9 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({4:[function(require,module,exports) {
+})({2:[function(require,module,exports) {
 console.log("hello world");
-},{}],5:[function(require,module,exports) {
+},{}],6:[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -112,10 +112,10 @@ function Module(moduleName) {
     data: module.bundle.hotData,
     _acceptCallbacks: [],
     _disposeCallbacks: [],
-    accept: function (fn) {
+    accept: function accept(fn) {
       this._acceptCallbacks.push(fn || function () {});
     },
-    dispose: function (fn) {
+    dispose: function dispose(fn) {
       this._disposeCallbacks.push(fn);
     }
   };
@@ -129,11 +129,13 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '55905' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '60952' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
     if (data.type === 'update') {
+      console.clear();
+
       data.assets.forEach(function (asset) {
         hmrApply(global.parcelRequire, asset);
       });
@@ -143,8 +145,6 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
           hmrAccept(global.parcelRequire, asset.id);
         }
       });
-      // Clear the console after HMR
-      console.clear();
     }
 
     if (data.type === 'reload') {
@@ -270,5 +270,5 @@ function hmrAccept(bundle, id) {
     return hmrAccept(global.parcelRequire, id);
   });
 }
-},{}]},{},[5,4], null)
+},{}]},{},[6,2], null)
 //# sourceMappingURL=/parcelBackgroundBug.4aa9929e.map
